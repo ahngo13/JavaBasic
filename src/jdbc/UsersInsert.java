@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class UsersInsert {
-	String url = "jdbc:oracle:thin:@192.168.2.30:1521:xe";
-	String user = "hr";
-	String pass = "hr";
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	String user = "scott";
+	String pass = "tiger";
 	
 	public UsersInsert() {
 		//1. Driver class loading
@@ -35,9 +35,9 @@ public class UsersInsert {
 			con = users.getConnection();
 			stmt = con.prepareStatement(sql);
 			//?에 등록할 값을 넣어주기
-			stmt.setString(1, "vega2k");
-			stmt.setString(2, "백명숙");
-			stmt.setString(3, "여");
+			stmt.setString(1, "hamletshu");
+			stmt.setString(2, "안시우");
+			stmt.setString(3, "남");
 			stmt.setString(4, "서울");
 			int cnt = stmt.executeUpdate();
 			System.out.println("등록된 건수 : " + cnt);

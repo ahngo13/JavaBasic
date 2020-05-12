@@ -1,4 +1,6 @@
 package jdbc.user.vo;
+//VO(value object), DTO(Data Transfer Object)
+//JavaBeans, Entity, Domain
 
 public class UserVO {
 	private String userid;

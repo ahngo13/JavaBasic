@@ -12,9 +12,9 @@ import java.util.List;
 import jdbc.user.vo.UserVO;
 
 public class UserDAO {
-	String url = "jdbc:oracle:thin:@192.168.2.30:1521:xe";
-	String user = "hr";
-	String pass = "hr";
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	String user = "scott";
+	String pass = "tiger";
 
 	public UserDAO() {
 		//1. Driver class loading
@@ -30,6 +30,7 @@ public class UserDAO {
 		return DriverManager.getConnection(url, user, pass);
 	}
 	
+	//반복적으로 사용하기 때문에 메소드로 만들어 놓음.
 	public void close(Statement stmt, Connection con) throws SQLException {
 		if (stmt != null) stmt.close();
 		if (con != null) con.close();
@@ -43,7 +44,7 @@ public class UserDAO {
 		int updateCnt = 0;
 		try {
 			con = getConnection();
-			//auto commit 해제
+			//auto commit 해제 (default)
 			con.setAutoCommit(false);
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, user.getName());
@@ -52,7 +53,7 @@ public class UserDAO {
 			stmt.setString(4, user.getUserid());
 			updateCnt = stmt.executeUpdate();
 			//커밋
-			con.commit();
+			con.commit(); //수동으로 commit
 		}catch(SQLException e) {
 			//롤백
 			try {
